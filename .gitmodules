@@ -1,0 +1,6 @@
+[submodule "api"]
+	path = api
+	url = git@github.com:cdadt/glossaire-api.git
+[submodule "app"]
+	path = app
+	url = git@github.com:cdadt/glossaire-app.git
