@@ -28,8 +28,10 @@ cache:
 install:
   - cd /home/travis/build/cdadt/glossaire/app
   - npm install
+  - git pull
   - cd /home/travis/build/cdadt/glossaire/api
   - npm install
+  - git pull
 
 script:
   - cd /home/travis/build/cdadt/glossaire/app
