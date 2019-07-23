@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: required
 
 git:
   depth: false
@@ -13,39 +13,39 @@ addons:
 
 matrix:
   include:
-  language: node_js
-    node_js:
-      - "10"
-
-    apt:
-    sources:
-      - google-chrome
-      - ng-common
-    packages:
-      - google-chrome-stable
-      
-    cache:
-      directories:
-        - $HOME/app/node_modules
-
-    install:
-      - npm install
-
-    script:
-      - npm run test
-      - sonar-scanner
-
-  - language: node_js
-    node_js:
-      - "10"
-
-    cache:
-      directories:
-        - $HOME/api/node_modules
-
-    install:
-      - npm install
-
-    script:
-      - npm run test
-      - sonar-scanner
+    - language: node_js
+      node_js:
+        - "10"
+  
+      apt:
+      sources:
+        - google-chrome
+        - ng-common
+      packages:
+        - google-chrome-stable
+  
+      cache:
+        directories:
+          - $HOME/app/node_modules
+  
+      install:
+        - npm install
+  
+      script:
+        - npm run test
+        - sonar-scanner
+  
+    - language: node_js
+      node_js:
+        - "10"
+  
+      cache:
+        directories:
+          - $HOME/api/node_modules
+  
+      install:
+        - npm install
+  
+      script:
+        - npm run test
+        - sonar-scanner
