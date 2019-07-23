@@ -39,7 +39,7 @@ script:
   - cd /home/travis/build/cdadt/glossaire/app
   - pwd
   - ls -al
-  - npm run test
+  - npm run test-headless
   - sonar-scanner
   - cd /home/travis/build/cdadt/glossaire/api
   - pwd
