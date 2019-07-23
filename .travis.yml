@@ -1,6 +1,9 @@
 dist: trusty
 sudo: required
 
+language: node_js
+node_js:
+  - "10"
 git:
   depth: false
   submodules: true
@@ -10,37 +13,32 @@ addons:
     organization: "cdadt"
     token:
       secure: 905f5eba405b0bafc9adf9f2026d30a3943f2052 # encrypted value of your token
+  apt:
+    sources:
+      - google-chrome
+      - ng-common
+    packages:
+      - google-chrome-stable
 
-    - language: node_js
-        node_js:
-          - "10"
-        
-        apt:
-        sources:
-          - google-chrome
-          - ng-common
-        packages:
-          - google-chrome-stable
+cache:
+  directories:
+    - /home/travis/build/cdadt/glossaire/app/node_modules
+    - /home/travis/build/cdadt/glossaire/api/node_modules
 
-        cache:
-          directories:
-            - /home/travis/build/cdadt/glossaire/app/node_modules
-            - /home/travis/build/cdadt/glossaire/api/node_modules
+install:
+  - cd /home/travis/build/cdadt/glossaire/app
+  - npm install
+  - cd /home/travis/build/cdadt/glossaire/api
+  - npm install
 
-        install:
-          - cd /home/travis/build/cdadt/glossaire/app
-          - npm install
-          - cd /home/travis/build/cdadt/glossaire/api
-          - npm install
-
-        script:
-          - cd /home/travis/build/cdadt/glossaire/app
-          - pwd
-          - ls -al
-          - npm run test
-          - sonar-scanner
-          - cd /home/travis/build/cdadt/glossaire/api
-          - pwd
-          - ls -al
-          - npm run test
-          - sonar-scanner
+script:
+  - cd /home/travis/build/cdadt/glossaire/app
+  - pwd
+  - ls -al
+  - npm run test
+  - sonar-scanner
+  - cd /home/travis/build/cdadt/glossaire/api
+  - pwd
+  - ls -al
+  - npm run test
+  - sonar-scanner
