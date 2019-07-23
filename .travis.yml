@@ -1,0 +1,41 @@
+dist: trusty
+sudo: false
+
+git:
+  depth: false
+  submodules: true
+
+addons:
+  sonarcloud:
+    organization: "cdadt"
+    token:
+      secure: 905f5eba405b0bafc9adf9f2026d30a3943f2052 # encrypted value of your token
+  apt:
+    sources:
+      - google-chrome
+      - ng-common
+    packages:
+      - google-chrome-stable
+  
+language: node_js
+node_js:
+  - "10"
+
+cache:
+  directories:
+    - ./app/node_modules
+    - ./api/node_modules
+
+install:
+  - cd app
+  - npm install
+  - cd ../api
+  - npm install
+
+script:
+  - cd app
+  - npm run test
+  - sonar-scanner
+  - cd ../api
+  - npm run test
+  - sonar-scanner
