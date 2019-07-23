@@ -10,32 +10,42 @@ addons:
     organization: "cdadt"
     token:
       secure: 905f5eba405b0bafc9adf9f2026d30a3943f2052 # encrypted value of your token
-  apt:
+
+matrix:
+  include:
+  language: node_js
+    node_js:
+      - "10"
+
+    apt:
     sources:
       - google-chrome
       - ng-common
     packages:
       - google-chrome-stable
-  
-language: node_js
-node_js:
-  - "10"
+      
+    cache:
+      directories:
+        - $HOME/app/node_modules
 
-cache:
-  directories:
-    - ./app/node_modules
-    - ./api/node_modules
+    install:
+      - npm install
 
-install:
-  - cd app
-  - npm install
-  - cd ../api
-  - npm install
+    script:
+      - npm run test
+      - sonar-scanner
 
-script:
-  - cd app
-  - npm run test
-  - sonar-scanner
-  - cd ../api
-  - npm run test
-  - sonar-scanner
+  - language: node_js
+    node_js:
+      - "10"
+
+    cache:
+      directories:
+        - $HOME/api/node_modules
+
+    install:
+      - npm install
+
+    script:
+      - npm run test
+      - sonar-scanner
