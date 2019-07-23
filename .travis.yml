@@ -27,7 +27,10 @@ matrix:
       cache:
         directories:
           - $HOME/app/node_modules
-  
+          
+      before_install:
+          - pwd
+          
       install:
         - npm install
   
