@@ -26,15 +26,15 @@ matrix:
   
       cache:
         directories:
-          - $HOME/app/node_modules
-          
-      before_install:
-          - pwd
+          - /home/travis/build/cdadt/glossaire/app/node_modules
           
       install:
+        - cd /home/travis/build/cdadt/glossaire/app
         - npm install
   
       script:
+        - cd /home/travis/build/cdadt/glossaire/app
+        - pwd
         - npm run test
         - sonar-scanner
   
@@ -44,11 +44,14 @@ matrix:
   
       cache:
         directories:
-          - $HOME/api/node_modules
+          - /home/travis/build/cdadt/glossaire/api/node_modules
   
       install:
+        - cd /home/travis/build/cdadt/glossaire/api
         - npm install
   
       script:
+        - cd /home/travis/build/cdadt/glossaire/api
+        - pwd
         - npm run test
         - sonar-scanner
